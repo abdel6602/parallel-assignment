@@ -1,13 +1,11 @@
 #include <stdio.h>
-#include <omp.h>
 #include <stdlib.h>
 #include <time.h>
 
 const int SIZE = 800;
 
-void parallel_multiply_outer(int m1[SIZE][SIZE], int m2[SIZE][SIZE], int result[SIZE][SIZE]) {
+void sequential_multiply(int m1[SIZE][SIZE], int m2[SIZE][SIZE], int result[SIZE][SIZE]) {
   for (int i = 0; i < SIZE; i++) {
-  #pragma omp parallel for
     for (int j = 0; j < SIZE; j++) {
       result[i][j] = 0; // Initialize to zero before accumulating
       for (int k = 0; k < SIZE; k++) {
@@ -30,12 +28,11 @@ int main() {
     }
   }
 
-  // Parallel execution (outer loop)
-  printf("\nParallel Multiplication (Outer Loop):\n");
-  parallel_multiply_outer(m1, m2, result);
+  // Sequential execution
+  printf("\nSequential Multiplication:\n");
+  sequential_multiply(m1, m2, result);
 
   // Printing the entire result matrix for a 500x500 matrix might overwhelm the console. 
-//   Uncomment the following if you want to see a small portion.
   for (int i = 0; i < SIZE; i++) {
     for (int j = 0; j < SIZE; j++) {
       printf("%d ", result[i][j]);
