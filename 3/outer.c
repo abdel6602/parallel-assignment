@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int SIZE = 600;
+const int SIZE = 800;
 
 void parallel_multiply_outer(int m1[SIZE][SIZE], int m2[SIZE][SIZE], int result[SIZE][SIZE]) {
   #pragma omp parallel for
